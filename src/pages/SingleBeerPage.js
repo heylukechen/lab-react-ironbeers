@@ -1,7 +1,45 @@
-const SingleBeerPage = () =>{
-    return(
-        <div><h1>Single beer</h1></div>
-    )
-}
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
+
+const SingleBeerPage = () => {
+  const { id } = useParams();
+  const [singleBeer, setSingleBeer] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`https://ih-beers-api2.herokuapp.com/beers/${id}`)
+      .then((response) => {
+        setSingleBeer(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
+  }, [id]);
+
+  return (
+    <div>
+      <Link to={"/beers"}>Back to all beers</Link>
+      {isLoading && <p>Loading beers</p>}
+      {singleBeer && (
+        <Card>
+          <Card.Img src={singleBeer.image_url} alt="beer image" />
+          <Card.Title>{singleBeer.name}</Card.Title>
+          <Card.Body>
+            <h3>{singleBeer.tagline}</h3>
+            <p>{singleBeer.description}</p>
+            <h3>{singleBeer.first_brewed}</h3>
+            <h4>{singleBeer.attenuation_level}</h4>
+            <h5>{singleBeer.contributed_by}</h5>
+          </Card.Body>
+        </Card>
+      )}
+    </div>
+  );
+};
 
 export default SingleBeerPage;
