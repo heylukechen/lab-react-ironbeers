@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import Header from "../components/Header";
 
 const SingleBeerPage = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const SingleBeerPage = () => {
 
   return (
     <div>
-      <Link to={"/beers"}>Back to all beers</Link>
+      <Header />
       {isLoading && <p>Loading beers</p>}
       {singleBeer && (
         <Card>

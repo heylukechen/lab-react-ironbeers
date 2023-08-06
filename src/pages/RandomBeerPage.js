@@ -2,27 +2,26 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import axios from "axios";
 import { Card } from "react-bootstrap";
-import SingleBeerPage from "./SingleBeerPage";
-import { Link } from "react-router-dom";
 
 const RandomBeerPage = () => {
   const [randomBeer, setRandomBeer] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     axios
       .get("https://ih-beers-api2.herokuapp.com/beers/random")
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setRandomBeer(response.data);
+        setIsLoaded(true);
       })
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <div>
-      <Link to={"/"}>Back to Home</Link>
-      {!isLoading && <p>Loading beers</p>}
+      <Header />
+      {!isLoaded && <p>Loading beers</p>}
       <h1>Random beer</h1>
       {randomBeer && (
         <Card>
