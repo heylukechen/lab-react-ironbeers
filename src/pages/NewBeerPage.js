@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import Header from "../components/Header";
 
@@ -48,72 +48,86 @@ const NewBeerPage = () => {
   return (
     <div>
       <Header />
-      <div className="d-flex justify-content-center align-items-center">
-        <Form className="w-49" onSubmit={handleSumit}>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="name">Name</Form.Label>
-            <Form.Control
-              type="text"
-              id="name"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-          </Form.Group>
+      <Container className="d-flex justify-content-center align-items-center">
+        <Form className="w-75" onSubmit={handleSumit}>
+          <Row>
+            <Col xs={12} md={4}>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="name">Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="name"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
+              </Form.Group>
+            </Col>
 
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="tagline">Tagline</Form.Label>
-            <Form.Control
-              type="text"
-              id="tagline"
-              onChange={(e) => setTagline(e.target.value)}
-              value={tagline}
-            />
-          </Form.Group>
+            <Col xs={12} md={4}>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="tagline">Tagline</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="tagline"
+                  onChange={(e) => setTagline(e.target.value)}
+                  value={tagline}
+                />
+              </Form.Group>
+            </Col>
+            <Col xs={12} md={4}>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="description"
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                />
+              </Form.Group>
+            </Col>
 
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="description">Description</Form.Label>
-            <Form.Control
-              type="text"
-              id="description"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-            />
-          </Form.Group>
+            <Col xs={12} md={4}>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="first_brewed">First brew date</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="first_brewed"
+                  onChange={(e) => setFirstBrewed(e.target.value)}
+                  value={firstBrewed}
+                />
+              </Form.Group>
+            </Col>
 
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="first_brewed">First brew date</Form.Label>
-            <Form.Control
-              type="text"
-              id="first_brewed"
-              onChange={(e) => setFirstBrewed(e.target.value)}
-              value={firstBrewed}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="attenuation_level">
-              Attenuation level
-            </Form.Label>
-            <Form.Control
-              type="number"
-              id="attenuation_level"
-              onChange={(e) => setAttenuationLevel(e.target.value)}
-              value={attenuationLevel}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="contributed_by">Contributed by</Form.Label>
-            <Form.Control
-              type="text"
-              id="contributed_by"
-              onChange={(e) => setContributedBy(e.target.value)}
-              value={contributedBy}
-            />
-          </Form.Group>
-          <Button type="submit">Add a new beer</Button>
+            <Col xs={12} md={4}>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="attenuation_level">
+                  Attenuation level
+                </Form.Label>
+                <Form.Control
+                  type="number"
+                  id="attenuation_level"
+                  onChange={(e) => setAttenuationLevel(e.target.value)}
+                  value={attenuationLevel}
+                />
+              </Form.Group>
+            </Col>
+            <Col xs={12} md={4}>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="contributed_by">Contributed by</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="contributed_by"
+                  onChange={(e) => setContributedBy(e.target.value)}
+                  value={contributedBy}
+                />
+              </Form.Group>
+            </Col>
+            <Button className="w-100 mt-2 mb-5" type="submit">
+              Add a new beer
+            </Button>
+          </Row>
         </Form>
-      </div>
+      </Container>
     </div>
   );
 };
